@@ -1,0 +1,26 @@
+{
+  "name": "product-management-system",
+  "version": "1.0.0",
+  "description": "Product Management System with CRUD operations",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": ["<rootDir>/test-setup.js"],
+    "collectCoverageFrom": [
+      "script.js",
+      "!node_modules/**"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "keywords": ["product", "management", "crud", "javascript"],
+  "author": "Challenge3 Team",
+  "license": "MIT"
+}

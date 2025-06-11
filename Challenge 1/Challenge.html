@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Synchronization</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            color: #222;
+            min-height: 100vh;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 40px;
+            color: #43cea2;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 420px;
+            margin: 40px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+        }
+
+        .card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+            padding: 32px 28px 28px 28px;
+            margin: 0 auto;
+            width: 100%;
+            transition: box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 36px 0 rgba(31, 38, 135, 0.18);
+        }
+
+        h2 {
+            color: #43cea2;
+            margin-bottom: 18px;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        button {
+            background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+            color: white;
+            border: none;
+            padding: 12px 28px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.2s, transform 0.1s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, #185a9d 0%, #43cea2 100%);
+            transform: translateY(-2px) scale(1.03);
+        }
+
+        #result h3 {
+            margin-top: 0;
+            color: #185a9d;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        label {
+            display: block;
+            margin: 12px 0 6px;
+            font-weight: 500;
+            color: #185a9d;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-bottom: 10px;
+            border: 1.5px solid #43cea2;
+            border-radius: 7px;
+            font-size: 1rem;
+            background: #f8fafc;
+            transition: border 0.2s;
+        }
+
+        input:focus {
+            border: 1.5px solid #185a9d;
+            outline: none;
+        }
+
+        p {
+            margin: 7px 0;
+            font-size: 1.05rem;
+            color: #333;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                max-width: 98vw;
+                padding: 0 2vw;
+            }
+            .card {
+                padding: 18px 8px 18px 8px;
+            }
+        }
+    </style>
+    <script>
+        const townClocks = [
+            { name: "Clock 1", time: 14 * 60 + 45 }, // 14:45
+            { name: "Clock 2", time: 15 * 60 + 5 },  // 15:05
+            { name: "Clock 3", time: 15 * 60 },      // 15:00
+            { name: "Clock 4", time: 14 * 60 + 40 }  // 14:40
+        ];
+
+        function synchronizeClocks() {
+            const grandClockTime = 15 * 60; // Grand Clock Tower time in minutes (15:00)
+            const timeDifferences = townClocks.map(clock => ({
+                name: clock.name,
+                difference: clock.time - grandClockTime
+            }));
+
+            const resultContainer = document.getElementById("result");
+            resultContainer.innerHTML = "<h3>Time Differences:</h3>";
+            timeDifferences.forEach(clock => {
+                const differenceText = `${clock.name}: ${clock.difference} minutes`;
+                const paragraph = document.createElement("p");
+                paragraph.textContent = differenceText;
+                resultContainer.appendChild(paragraph);
+            });
+        }
+
+        function addClock() {
+            const clockName = document.getElementById("clockName").value;
+            const clockTimeInput = document.getElementById("clockTime").value;
+
+            if (!clockName || !clockTimeInput) {
+                alert("Please enter both clock name and time.");
+                return;
+            }
+
+            const [hours, minutes] = clockTimeInput.split(":").map(Number);
+            if (isNaN(hours) || isNaN(minutes) || hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+                alert("Invalid time format. Please use HH:MM format.");
+                return;
+            }
+
+            const clockTime = hours * 60 + minutes;
+            townClocks.push({ name: clockName, time: clockTime });
+
+            alert(`${clockName} added successfully!`);
+        }
+    </script>
+</head>
+<body>
+    <h1>Clock Synchronization System</h1>
+    <div class="container">
+        <div class="card">
+            <button onclick="synchronizeClocks()">Synchronize Clocks</button>
+            <div id="result" style="margin-top:18px;"></div>
+        </div>
+        <div class="card">
+            <h2>Enter Clock Time:</h2>
+            <label for="clockName">Clock Name:</label>
+            <input type="text" id="clockName" placeholder="e.g., Clock 5">
+            <label for="clockTime">Clock Time (HH:MM):</label>
+            <input type="text" id="clockTime" placeholder="e.g., 16:30">
+            <button onclick="addClock()">Add Clock</button>
+        </div>
+    </div>
+</body>
+</html>

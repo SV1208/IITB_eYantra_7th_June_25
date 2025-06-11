@@ -1,0 +1,22 @@
+{
+  "name": "grid-apple-quest",
+  "version": "1.0.0",
+  "description": "A web-based game where a hero moves in an 8x8 grid, avoiding monsters and trying to reach an apple to win.",
+  "main": "src/js/game.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [
+    "game",
+    "javascript",
+    "grid",
+    "monsters",
+    "apple"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^27.0.0"
+  }
+}

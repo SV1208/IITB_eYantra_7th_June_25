@@ -1,0 +1,207 @@
+/* Grid Apple Quest Styles */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+h1 {
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+#game-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+#instructions {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#instructions h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+#instructions ul {
+    margin: 10px 0;
+    padding-left: 20px;
+}
+
+#instructions li {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+#auto-controls {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    text-align: center;
+}
+
+#auto-controls button {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#auto-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+#auto-controls button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#auto-controls label {
+    margin: 0 10px;
+    font-weight: 600;
+}
+
+#speedSlider {
+    margin: 0 5px;
+}
+
+#grid {
+    display: inline-grid;
+    margin: 20px auto;
+    border-radius: 10px;
+    overflow: hidden;
+    justify-self: center;
+    width: fit-content;
+}
+
+.cell {
+    transition: all 0.2s ease;
+}
+
+.cell:hover {
+    transform: scale(1.05);
+}
+
+#status {
+    margin: 20px 0;
+    font-size: 18px;
+}
+
+#message {
+    background: #fff3e0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: #e65100;
+}
+
+#score {
+    font-size: 20px;
+    font-weight: bold;
+    color: #2e7d32;
+}
+
+#controls {
+    margin: 20px 0;
+}
+
+#controls button {
+    background: linear-gradient(45deg, #4caf50, #45a049);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    margin: 5px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+#controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    #game-container {
+        padding: 15px;
+    }
+    
+    .cell {
+        width: 40px !important;
+        height: 40px !important;
+        font-size: 20px !important;
+    }
+    
+    #grid {
+        grid-template-columns: repeat(10, 40px) !important;
+        grid-template-rows: repeat(8, 40px) !important;
+    }
+    
+    #auto-controls {
+        text-align: center;
+    }
+    
+    #auto-controls button {
+        display: block;
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+
+/* Animation for collected items */
+@keyframes collect {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(0); }
+}
+
+.cell.collected {
+    animation: collect 0.3s ease-in-out;
+}
+
+/* Pulse animation for player */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.cell:has-content('😊') {
+    animation: pulse 2s infinite;
+}

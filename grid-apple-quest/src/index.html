@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Apple Quest</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Grid Apple Quest</h1>
+    <div id="game-container">
+        <div id="instructions">
+            <h3>How to Play:</h3>
+            <ul>
+                <li>😊 You are the green smiley face</li>
+                <li>🍎 Collect apples to score points</li>
+                <li>👻 Avoid the ghost monsters</li>
+                <li>Use ⬆️⬇️⬅️➡️ arrow keys to move</li>
+            </ul>
+            <div id="auto-controls">
+                <button id="autoPlayBtn" onclick="toggleAutoPlay()">Start Auto-Play</button>
+                <button id="pauseBtn" onclick="pauseGame()" disabled>Pause</button>
+                <label>Speed: <input type="range" id="speedSlider" min="100" max="1000" value="300" onchange="updateSpeed()"> <span id="speedValue">300ms</span></label>
+            </div>
+        </div>
+        <div id="grid"></div>
+        <div id="status">
+            <p id="message">Welcome to Grid Apple Quest! Use arrow keys to move.</p>
+            <p>Score: <span id="score">0</span></p>
+        </div>
+        <div id="controls">
+            <button onclick="startGame()">Start Game</button>
+            <button onclick="resetGame()">Reset</button>
+        </div>
+    </div>
+    <script src="js/grid.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/monster.js"></script>
+    <script src="js/apple.js"></script>
+    <script src="js/game.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            initializeGame();
+        });
+    </script>
+</body>
+</html>
